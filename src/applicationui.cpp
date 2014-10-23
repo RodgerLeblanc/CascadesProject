@@ -64,15 +64,54 @@ void ApplicationUI::onSystemLanguageChanged()
     }
 }
 
-void ApplicationUI::setText(QString t)
+void ApplicationUI::setText(QString newValue)
 {
-    Q_UNUSED(t);
+    qDebug() << newValue;
+
+    QString celsius = QString::number(floor(newValue.toDouble()));
+    QString farenheit = QString::number(floor((newValue.toDouble() * 1.8) + 32));
+    QByteArray degreeSign = "°";
 
     QStringList listOfMessages;
-    listOfMessages << "Fuck that!" << "Get the fuck out!" << "You're a douche!";
+    int indexOfTheMessageToShow;
 
-    int indexOfTheMessageToShow = qrand() % listOfMessages.size();
+    if (newValue <= "-50") {
+        listOfMessages.clear();
+        listOfMessages << "Hell is freezing the fuck over (%1%2C/%3%2F)" << "Even ice is saying fuck that, I'm not going ouside today (%1%2C/%3%2F)" << "Is that for real? (%1%2C/%3%2F)";
 
-    m_text = listOfMessages[indexOfTheMessageToShow];
+        indexOfTheMessageToShow = qrand() % listOfMessages.size();
+    }
+    else if ((newValue <= "-20") && (newValue > "-50")) {
+        listOfMessages.clear();
+        listOfMessages << "Where do you live fucker? Fucking Artantic? (%1%2C/%3%2F)" << "Are you serious (%1%2C/%3%2F)" << "Don't take a piss outside at %1%2C/%3%2F";
+
+        indexOfTheMessageToShow = qrand() % listOfMessages.size();
+    }
+    else if ((newValue <= "0") && (newValue > "-20")) {
+        listOfMessages.clear();
+        listOfMessages << "Fuck that's cold (%1%2C/%3%2F)" << "Even water is freezing at this point (%1%2C/%3%2F)" << "You're in a Igloo or what? (%1%2C/%3%2F)";
+
+        indexOfTheMessageToShow = qrand() % listOfMessages.size();
+    }
+    else if ((newValue <= "20") && (newValue > "0")) {
+        listOfMessages.clear();
+        listOfMessages << "It's fucking chilly (%1%2C/%3%2F)" << "I hope you don't think it's summer (%1%2C/%3%2F)" << "That's not even hot (%1%2C/%3%2F)";
+
+        indexOfTheMessageToShow = qrand() % listOfMessages.size();
+    }
+    else if ((newValue <= "50") && (newValue > "20")) {
+        listOfMessages.clear();
+        listOfMessages << "That's Jennifer Lopez hot (%1%2C/%3%2F)" << "It's fucking melting outside (%1%2C/%3%2F)" << "Get a freaking A/C (%1%2C/%3%2F)";
+
+        indexOfTheMessageToShow = qrand() % listOfMessages.size();
+    }
+    else if (newValue > "50") {
+        listOfMessages.clear();
+        listOfMessages << "It's hell over here (%1%2C/%3%2F)" << "Smoking (%1%2C/%3%2F)" << "Burning like fucking toast in a toaster (%1%2C/%3%2F)";
+
+        indexOfTheMessageToShow = qrand() % listOfMessages.size();
+    }
+
+    m_text = listOfMessages[indexOfTheMessageToShow].arg(celsius, QString::fromUtf8(degreeSign), farenheit);
     emit textChanged();
 }

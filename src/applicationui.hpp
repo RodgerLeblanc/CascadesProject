@@ -42,7 +42,7 @@ public:
     ApplicationUI();
     virtual ~ApplicationUI() {}
 
-    Q_INVOKABLE void setText(QString t);
+    Q_INVOKABLE void setText(QString newValue);
 
 private slots:
     void onSystemLanguageChanged();

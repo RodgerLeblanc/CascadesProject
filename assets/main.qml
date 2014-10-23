@@ -21,7 +21,7 @@ Page {
         Button {
             text: "Show random message"
             onClicked: {
-                _app.setText("")
+                _app.setText(String((Math.random() * 120) - 50))
             }
         }
         Label {

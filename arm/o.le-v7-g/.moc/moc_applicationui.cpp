@@ -36,10 +36,10 @@ static const uint qt_meta_data_ApplicationUI[] = {
       29,   14,   14,   14, 0x08,
 
  // methods: signature, parameters, type, tag, flags
-      57,   55,   14,   14, 0x02,
+      64,   55,   14,   14, 0x02,
 
  // properties: name, type, flags
-      82,   74, 0x0a495103,
+      89,   81, 0x0a495103,
 
  // properties: notify_signal_id
        0,
@@ -49,7 +49,7 @@ static const uint qt_meta_data_ApplicationUI[] = {
 
 static const char qt_meta_stringdata_ApplicationUI[] = {
     "ApplicationUI\0\0textChanged()\0"
-    "onSystemLanguageChanged()\0t\0"
+    "onSystemLanguageChanged()\0newValue\0"
     "setText(QString)\0QString\0text\0"
 };
 
